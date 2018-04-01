@@ -5,36 +5,21 @@ import {HEROESDUMMYLIST} from '../data/heroes';
 import {HeroService} from '../hero.service';
 
 @Component({
-  selector: 'heroes',
+  selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  hero: Hero = {
-    id: 1,
-    name: "Wind",
-    age: 5
-  };
-  // dummyHeroes = HEROESDUMMYLIST;
-  dummyHeroesNew: Hero[]
 
-  clickedHero: Hero;
+  dummyHeroesNew: Hero[];
 
-  onHeroSelect(heroObj: Hero): void{
-    this.clickedHero = heroObj
-  }
-
-  // retrieveAllHeroes(): void{
-  //   this.dummyHeroesNew = this.heroService.getHeroes()
-  // }
-
-  retrieveAllHeroes(): void{
-    this.heroService.getHeroes().subscribe(data => this.dummyHeroesNew = data)
+  retrieveAllHeroes(): void {
+    this.heroService.getHeroes().subscribe(data => this.dummyHeroesNew = data);
   }
 
   constructor(private heroService: HeroService) { }
   ngOnInit() {
-    this.retrieveAllHeroes()
+    this.retrieveAllHeroes();
   }
 
 }

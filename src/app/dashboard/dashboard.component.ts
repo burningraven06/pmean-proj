@@ -12,15 +12,15 @@ import {HeroService} from '../hero.service';
 export class DashboardComponent implements OnInit {
 
   constructor(private heroService: HeroService) { }
-  
-  dashboardHeroes: Hero[]
 
-  retrieveRecentHeroes(): void{
-    this.heroService.getHeroes().subscribe(data => this.dashboardHeroes = data.slice(1,4))
+  dashboardHeroes: Hero[];
+
+  retrieveRecentHeroes(): void {
+    this.heroService.getHeroes().subscribe(data => this.dashboardHeroes = data.slice(1, 4));
   }
 
   ngOnInit() {
-    this.retrieveRecentHeroes()
+    this.retrieveRecentHeroes();
   }
 
 }

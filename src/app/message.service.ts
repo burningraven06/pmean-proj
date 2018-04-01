@@ -6,11 +6,11 @@ export class MessageService {
   constructor() { }
   messages: string[] = [];
 
-  addMsg(msg: string){
-    this.messages.push(msg)
+  addMsg(msg: string) {
+    this.messages.push(msg);
   }
 
-  clear(){
-    this.messages = []
+  clear() {
+    this.messages = [];
   }
 }

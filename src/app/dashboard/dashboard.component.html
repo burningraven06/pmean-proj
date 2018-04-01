@@ -1,6 +1,6 @@
 <h3> Top Heroes</h3>
 <div class='col-sm-3'>
-  <a *ngFor='let dashHero of dashboardHeroes'>
+  <a *ngFor='let dashHero of dashboardHeroes' routerLink='/detail/{{dashHero.id}}'>
     <p> {{ dashHero.name }} </p>
   </a>
 </div>
