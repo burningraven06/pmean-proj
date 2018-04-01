@@ -1,4 +1,4 @@
-<div class='col-sm-6'>
+<div class='col-sm-6 padzero'>
   <h2> Hero Dummy List </h2>
   <ul *ngIf='dummyHeroesNew'> 
       <li class='cust-li' *ngFor='let heroElem of dummyHeroesNew' (click)='onHeroSelect(heroElem)' [class.heroSelectedCSS]="heroElem === clickedHero">

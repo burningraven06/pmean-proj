@@ -1,13 +1,12 @@
-<hr/>
-<div class='col-sm-12' *ngIf='passedHero'>
-  <div class='col-sm-6'>
+<div class='col-sm-12 padzero' *ngIf='passedHero'>
+  <button class=' btn btn-primary' (click)="goBack()">Back</button>
+  <div class='col-sm-12 padzero'>
     <h2> {{passedHero.name | uppercase}} Details </h2>
     <p> ID: {{ passedHero.id}} </p>
     <p> Name: {{passedHero.name}} </p>
     <p> Name: {{passedHero.age}} </p>
   </div>
-  <hr/>
-  <div class='col-sm-6'> 
+  <div class='col-sm-12 padzero'> 
     <h2>Edit Hero {{passedHero.name}} </h2> 
     <label> Name: 
       <input [(ngModel)]="passedHero.name" class='form-control' placeholder='Name'/>
