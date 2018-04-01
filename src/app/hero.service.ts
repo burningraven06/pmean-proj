@@ -5,16 +5,14 @@ import {HEROESDUMMYLIST} from './data/heroes';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 
+import {MessageService} from './message.service';
 @Injectable() 
 export class HeroService {
 
-  constructor() { }
-  
-  // getHeroes(): Hero[]{
-  //   return HEROESDUMMYLIST;
-  // }
+  constructor(private messageService: MessageService) { }
 
   getHeroes(): Observable<Hero[]> {
+    this.messageService.addMsg('HeroService: Fetched Heroes')
     return of(HEROESDUMMYLIST)
   }
 
