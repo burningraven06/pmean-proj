@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Hero} from '../modelStyles/hero';
 import {HEROESDUMMYLIST} from '../data/heroes';
 
+import {HeroService} from '../hero.service';
+
 @Component({
   selector: 'heroes',
   templateUrl: './heroes.component.html',
@@ -13,7 +15,8 @@ export class HeroesComponent implements OnInit {
     name: "Wind",
     age: 5
   };
-  dummyHeroes = HEROESDUMMYLIST;
+  // dummyHeroes = HEROESDUMMYLIST;
+  dummyHeroesNew: Hero[]
 
   clickedHero: Hero;
 
@@ -21,8 +24,13 @@ export class HeroesComponent implements OnInit {
     this.clickedHero = heroObj
   }
 
-  constructor() { }
+  retrieveAllHeroes(): void{
+    this.dummyHeroesNew = this.heroService.getHeroes()
+  }
+
+  constructor(private heroService: HeroService) { }
   ngOnInit() {
+    this.retrieveAllHeroes()
   }
 
 }
