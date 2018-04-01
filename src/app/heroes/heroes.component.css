@@ -1,0 +1,10 @@
+.cust-li{
+   cursor:pointer
+}
+.cust-li:hover{
+   color: green;
+}
+.heroSelectedCSS{
+   font-weight: bold;
+   color: green;
+}
