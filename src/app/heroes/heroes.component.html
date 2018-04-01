@@ -1,29 +1,10 @@
 <div class='col-sm-6'>
   <h2> Hero Dummy List </h2>
   <ul> 
-    <li class='cust-li' *ngFor='let heroElem of dummyHeroes' (click)='onHeroSelect(heroElem)' [class.heroSelectedCSS]="heroElem === selectedHero">
+    <li class='cust-li' *ngFor='let heroElem of dummyHeroes' (click)='onHeroSelect(heroElem)' [class.heroSelectedCSS]="heroElem === clickedHero">
       {{heroElem.name}}
     </li>
   </ul>
 </div>
 
-
-<hr/>
-<div *ngIf='selectedHero'>
-  <div class='col-sm-6'>
-    <h2> {{selectedHero.name | uppercase}} Details </h2>
-    <p> ID: {{ selectedHero.id}} </p>
-    <p> Name: {{selectedHero.name}} </p>
-    <p> Name: {{selectedHero.age}} </p>
-  </div>
-  <hr/>
-  <div class='col-sm-6'> 
-    <h2>Edit Hero</h2> 
-    <label> Name: 
-      <input [(ngModel)]="selectedHero.name" class='form-control' placeholder='Name'/>
-    </label>
-    <label> Age: 
-      <input [(ngModel)]="selectedHero.age" class="form-control" placeholder='Age' />
-    </label>
-  </div>
-</div>
+<hero-details [passedHero]="clickedHero"></hero-details>

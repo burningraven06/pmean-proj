@@ -15,10 +15,10 @@ export class HeroesComponent implements OnInit {
   };
   dummyHeroes = HEROESDUMMYLIST;
 
-  selectedHero: Hero;
+  clickedHero: Hero;
 
   onHeroSelect(heroObj: Hero): void{
-    this.selectedHero = heroObj
+    this.clickedHero = heroObj
   }
 
   constructor() { }
