@@ -24,8 +24,12 @@ export class HeroesComponent implements OnInit {
     this.clickedHero = heroObj
   }
 
+  // retrieveAllHeroes(): void{
+  //   this.dummyHeroesNew = this.heroService.getHeroes()
+  // }
+
   retrieveAllHeroes(): void{
-    this.dummyHeroesNew = this.heroService.getHeroes()
+    this.heroService.getHeroes().subscribe(data => this.dummyHeroesNew = data)
   }
 
   constructor(private heroService: HeroService) { }
