@@ -1,0 +1,12 @@
+<div class='col-sm-12 padzero'>
+   <div class='col-sm-6 padzero'>
+      <h5 class='inline'> Search Results </h5>
+      <input [(ngModel)]='searchText' class='form-control' placeholder='Search Heroes'/>
+       {{searchBox }}
+      <ul>
+      <li *ngFor='let hero of allHeroes | heroNameFilter: searchText'>
+         <a routerLink='/hero-detail/{{hero.id}}'> {{hero.name}} </a>
+      </li>
+      </ul>
+   </div>
+</div>

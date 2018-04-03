@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Hero} from '../modelStyles/hero';
-import {HEROESDUMMYLIST} from '../data/heroes';
-
 import {HeroService} from '../hero.service';
 
 @Component({
@@ -31,7 +29,7 @@ export class HeroesComponent implements OnInit {
   createHero(nameVal:string, ageVal:number){
     nameVal = nameVal.trim();
     if (!nameVal || !ageVal) return;
-    let newHero = {name: nameVal, age: ageVal}
+    let newHero = {id: -1, name: nameVal, age: ageVal}
     this.heroService.createHero(newHero).subscribe(data => this.heroes.push(data));
     this.toggleForm()
   }

@@ -44,4 +44,13 @@ export class HeroService {
       const deleteHeroByIDURL = `${this.heroesAPIURL}/${hero.id}`;
       return this.http.delete<Hero>(deleteHeroByIDURL).pipe(catchError(this.handleServerError<Hero>('Delete Hero')))
    }
+
+   searchHeroesByName(term: string): Observable<Hero[]> {
+      if (!term.trim()) return of([]);
+      
+      return this.http.get<Hero[]>(`api/heroes/search/?name=${term}`).pipe(
+        catchError(this.handleServerError<Hero[]>('searchHeroes', []))
+      );
+    }
+
 }
