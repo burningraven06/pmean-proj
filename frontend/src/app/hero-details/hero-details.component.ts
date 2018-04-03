@@ -12,13 +12,13 @@ import {HeroService} from '../hero.service';
 
 export class HeroDetailsComponent implements OnInit {
 
-  @Input() passedHero: Hero;
+  @Input() hero: Hero;
 
   constructor(private activatedRoute: ActivatedRoute, private heroService: HeroService, private location: Location) { }
 
   getHero(): void {
     const heroID = +this.activatedRoute.snapshot.paramMap.get('id');
-    this.heroService.getHeroByID(heroID).subscribe(data => this.passedHero = data);
+    this.heroService.getHeroByID(heroID).subscribe(data => this.hero = data);
   }
 
   ngOnInit() {
@@ -27,5 +27,14 @@ export class HeroDetailsComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  updateHero(){
+    this.heroService.updateHeroByID(this.hero).subscribe( () => this.goBack());
+  }
+
+  deleteHero(){
+    this.heroService.deleteHeroByID(this.hero).subscribe();
+    this.goBack();
   }
 }

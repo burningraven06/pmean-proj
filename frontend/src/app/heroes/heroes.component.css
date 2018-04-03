@@ -11,3 +11,24 @@
 .padzero{
    padding: 0px !important;
 }
+.mb24{
+   margin-bottom:24px;
+}
+.mt24{
+   margin-top:24px;
+}
+.mt48{
+   margin-top:48px;
+}
+.btn{
+   border-radius: 0;
+}
+.ml16{
+   margin-left:16px;
+}
+.inline{
+   display:inline
+}
+.form-control{
+   border-radius:0;
+}

@@ -1,41 +1,47 @@
-import {Injectable} from '@angular/core';
-import {Hero} from './modelStyles/hero';
-import {HEROESDUMMYLIST} from './data/heroes';
-
-import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Hero } from './modelStyles/hero';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import {MessageService} from './message.service';
 @Injectable()
 export class HeroService {
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+   constructor(private http: HttpClient) { }
 
-  private heroesURL = 'http://localhost:3000/api/heroes';
+   private heroesAPIURL = 'http://localhost:3000/api/heroes';
 
-  private handleServerError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.logMsg(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
+   private handleServerError<T>(operation = 'operation', result?: T) {
+      return (error: any): Observable<T> => {
+         console.error(error);
+         return of(result as T);
+      };
+   }
 
-  getHeroes(): Observable<Hero[]> {
-    this.messageService.addMsg('HeroService: Fetched Heroes');
-    return this.http.get<Hero[]>(this.heroesURL).pipe(tap( heroes => this.logMsg(`Fetched Heroes`)), catchError(this.handleServerError('getHeroes', [])));
-  }
+   getHeroes(): Observable<Hero[]> {
+      return this.http.get<Hero[]>(this.heroesAPIURL).pipe(catchError(this.handleServerError('getHeroes', [])));
+   }
 
-  private logMsg(msg: string) {
-    this.messageService.addMsg('HeroService: ' + msg);
-  }
+   getHeroByID(id: number): Observable<Hero> {
+      const getHeroByIDURL = `${this.heroesAPIURL}/${id}`;
+      return this.http.get<Hero>(getHeroByIDURL).pipe(catchError(this.handleServerError<Hero>(`getHeroByID: ${id}`)));
+   }
 
-  getHeroByID(id: number): Observable<Hero> {
-    this.messageService.addMsg(`HeroService: fetched hero with id=${id}`);
-    const getHeroByIDURL = `${this.heroesURL}/${id}`;
-    return this.http.get<Hero>(getHeroByIDURL).pipe( tap(_ => this.logMsg(`Fetched Hero with ID: ${id}`)), catchError(this.handleServerError<Hero>(`getHeroByID: ${id}`)) );
-  }
+   updateHeroByID(heroObj: Hero): Observable<Hero> {
+      const httpPUTOptions = {
+         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      }
+      const updateHeroByIDURL = `${this.heroesAPIURL}/${heroObj.id}`
+      return this.http.patch(updateHeroByIDURL, heroObj, httpPUTOptions).pipe(catchError(this.handleServerError<any>(`updateHeroByID: ${heroObj.id}`)))
+   }
 
+   createHero(hero: Hero): Observable<Hero> {
+      return this.http.post<Hero>(this.heroesAPIURL, hero).pipe(catchError(this.handleServerError<any>('addHero')))
+   }
+
+   deleteHeroByID(hero: Hero): Observable<Hero> {
+      const deleteHeroByIDURL = `${this.heroesAPIURL}/${hero.id}`;
+      return this.http.delete<Hero>(deleteHeroByIDURL).pipe(catchError(this.handleServerError<Hero>('Delete Hero')))
+   }
 }
