@@ -7,7 +7,7 @@ heroRouter.get('/', (req, res, next) => {
 })
 
 heroRouter.get('/search/', (req, res, next) => {
-   Hero.findAll( { where: { name: req.query.name }} ).then( (data) => res.status(200).send(data) ).catch( err => next(err));
+   Hero.findAll( { where: { name : { $iLike: `%${req.query.name}%` }}} ).then( (data) => res.status(200).send(data) ).catch( err => next(err));
 })
 
 heroRouter.post('/', (req, res, next) => {
