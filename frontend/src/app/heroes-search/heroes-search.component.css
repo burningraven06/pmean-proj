@@ -7,3 +7,6 @@
 .inline{
    display: inline;
 }
+.cust-li{
+   list-style: none
+}

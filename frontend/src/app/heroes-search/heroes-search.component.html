@@ -1,22 +1,17 @@
 <div class='col-sm-12 padzero'>
-   <div class='col-sm-6 padzero'>
-      <h5 class='inline'> Search Results </h5>
-      
-      <div class="input-group">
-         <input #searchText class='form-control' placeholder='Search Heroes' (keyup)="searchHero(searchText.value)"/>
-
-         <span class="input-group-btn">
-            <button class="btn btn-default" type="submit" (click)="searchHero(searchText.value)"> 
-               <i class='fa fa-search'></i> 
-            </button>
-         </span>
-      </div>
-      
-      <ul>
-         <li *ngFor='let hero of searchResultsNew'>
-            <a routerLink='/hero-detail/{{hero.id}}'> {{hero.name}} </a>
-         </li>
-      </ul>
-
-   </div>
+  <!-- <div class='col-sm-4 padzero'> -->
+    <div class="input-group">
+      <input #searchText class='form-control' placeholder='Search Heroes' (keyup)="searchHero(searchText.value)" />
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit" (click)="searchHero(searchText.value)">
+          <i class='fa fa-search'></i>
+        </button>
+      </span>
+    </div>
+    <ul>
+      <li class='cust-li' *ngFor='let hero of searchResultsNew'>
+        <a routerLink='/hero-detail/{{hero.id}}'> {{hero.name}} </a>
+      </li>
+    </ul>
+  <!-- </div> -->
 </div>

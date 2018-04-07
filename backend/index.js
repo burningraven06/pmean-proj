@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
-const heroRouter = require('./routes/heroRoutes');
+
+const heroRouterPG = require('./pgroutes/heroRoutes');
 
 app.use(express.static('../frontend/dist/'));
 
@@ -16,7 +17,7 @@ var allowCors = (req, res, next) => {
   next();
 };
 
-app.use('/api/heroes', allowCors, heroRouter);
+app.use('/api/heroes', allowCors, heroRouterPG);
 
 app.listen(port, () => {
   console.log(`Express running on port: ${port}`);
