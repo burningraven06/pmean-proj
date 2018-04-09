@@ -23,6 +23,10 @@
 .btn{
    border-radius: 0;
 }
+.pagination> li> a{
+   cursor: pointer;
+   border-radius:0;
+}
 .ml16{
    margin-left:16px;
 }

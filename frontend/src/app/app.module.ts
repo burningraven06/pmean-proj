@@ -6,15 +6,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailsComponent } from './hero-details/hero-details.component';
-import {HeroService} from './hero.service';
 import { MessagesComponent } from './messages/messages.component';
-import { MessageService } from './message.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './heroes-search/heroes-search.component';
 
-import {HeroNameFilterPipe} from './filter.pipe';
+
+import { HeroService} from './hero.service';
+import { MessageService } from './message.service';
+import { PaginationService } from './pagination.service'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,6 @@ import {HeroNameFilterPipe} from './filter.pipe';
     NavbarComponent,
     DashboardComponent,
     HeroSearchComponent,
-    HeroNameFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,7 @@ import {HeroNameFilterPipe} from './filter.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [HeroService, MessageService],
+  providers: [HeroService, MessageService, PaginationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
