@@ -3,7 +3,10 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const heroRouterPG = require('./pgroutes/heroRoutes');
+var mongoDbConn = require('./mongo-dbconn/dbconnection');
+
+const heroRouterPG = require('./pg-routes/heroRoutes');
+const heroRouterMG = require('./mongo-routes/heroRoutes');
 
 app.use(express.static('../frontend/dist/'));
 
@@ -17,7 +20,8 @@ var allowCors = (req, res, next) => {
   next();
 };
 
-app.use('/api/heroes', allowCors, heroRouterPG);
+app.use('/api/pg/heroes', allowCors, heroRouterPG);
+app.use('/api/mongo/heroes', allowCors, heroRouterMG);
 
 app.listen(port, () => {
   console.log(`Express running on port: ${port}`);

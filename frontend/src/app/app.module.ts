@@ -4,28 +4,34 @@ import { FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailsComponent } from './hero-details/hero-details.component';
-import { MessagesComponent } from './messages/messages.component';
-import { AppRoutingModule } from './/app-routing.module';
-import { NavbarComponent } from './navbar/navbar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroSearchComponent } from './heroes-search/heroes-search.component';
+import { HeroesPGComponent } from './components/heroes-pg/heroes-pg.component';
+import { HeroDetailsPGComponent } from './components/hero-details-pg/hero-details-pg.component';
+import { HeroSearchPGComponent } from './components/heroes-search-pg/heroes-search-pg.component';
+import { HeroesMGComponent} from './components/heroes-mg/heroes-mg.component';
+import { HeroDetailsMGComponent} from './components/hero-details-mg/hero-details-mg.component';
+import { HeroSearchMGComponent} from './components/heroes-search-mg/heroes-search-mg.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import { HeroMongoService} from './services/hero.mongo.service';
+import { HeroPGService} from './services/hero.pg.service';
+import { MessageService } from './services/message.service';
+import { PaginationService } from './services/pagination.service'
 
-import { HeroService} from './hero.service';
-import { MessageService } from './message.service';
-import { PaginationService } from './pagination.service'
-
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
-    HeroDetailsComponent,
+    HeroesPGComponent,
+    HeroDetailsPGComponent,
     MessagesComponent,
     NavbarComponent,
     DashboardComponent,
-    HeroSearchComponent,
+    HeroSearchPGComponent,
+    HeroesMGComponent,
+    HeroDetailsMGComponent,
+    HeroSearchMGComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,7 @@ import { PaginationService } from './pagination.service'
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [HeroService, MessageService, PaginationService],
+  providers: [HeroPGService, MessageService, PaginationService, HeroMongoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

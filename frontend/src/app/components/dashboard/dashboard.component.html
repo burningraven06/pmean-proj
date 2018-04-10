@@ -1,0 +1,12 @@
+<div class='col-sm-6 padzero'>
+  <h3 class='mb24'> Top Heroes PGDB</h3>
+  <div class='col-sm-2 padzero' *ngFor='let dashHero of dashboardPGHeroes'>
+    <a routerLink='/hero-detail-pg/{{dashHero.id}}'> {{ dashHero.name }} </a> 
+  </div>
+</div>
+<div class='col-sm-6 padzero'>
+  <h3 class='mb24'> Top Heroes MGDB</h3>
+  <div class='col-sm-2 padzero' *ngFor='let dashHero of dashboardMGHeroes'>
+    <a routerLink='/hero-detail-mg/{{dashHero._id}}'> {{ dashHero.name }} </a> 
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.padzero{
+   padding: 0;
+}
+.form-control, .btn{
+   border-radius: 0;
+}
+.inline{
+   display: inline;
+}
+.cust-li{
+   list-style: none
+}

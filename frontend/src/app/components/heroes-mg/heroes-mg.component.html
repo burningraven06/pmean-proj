@@ -1,0 +1,59 @@
+<div class='col-sm-12 padzero'>
+  <div class='col-sm-6 mt24 mb24 padzero' *ngIf='showHeroes'>
+    <h3 class='inline' > HeroList </h3>
+    <button class='btn btn-success ml16' (click)='toggleForm()'> Add Hero</button>
+  </div>
+
+  <div class='col-sm-4 mt24 mb24 padzero'>
+    <!-- <app-heroes-search-mg></app-heroes-search-mg> -->
+  </div>
+
+  <div class='col-sm-12 padzero' *ngIf='heroes && showHeroes'> 
+    <div class='col-sm-2 mt16 padzero' *ngFor='let heroElem of pagedHeroes' (click)='onHeroSelect(heroElem)' [class.heroSelectedCSS]="heroElem === clickedHero">
+      <a class='' routerLink='/hero-detail-mg/{{heroElem._id}}'> {{heroElem.name}} </a>
+    </div>
+  </div>
+
+  <div class='col-sm-12 padzero mt24' *ngIf='heroes && showHeroes'>
+    <ul class='pagination' *ngIf="heroPagination.pages && heroPagination.pages.length">
+        <li [ngClass]="{disabled:heroPagination.currentPage === 1}"> 
+           <a (click)="setPaginationPg(1)"> First</a>
+        </li>
+        <li [ngClass]="{disabled:heroPagination.currentPage ===1}"> 
+           <a (click)="setPaginationPg(heroPagination.currentPage -1)"> Previous</a>
+        </li>
+        <li *ngFor="let pageNum of heroPagination.pages" [ngClass]="{active:heroPagination.currentPage === pageNum}"> 
+           <a (click)="setPaginationPg(pageNum)"> {{pageNum}}</a>
+        </li>
+        <li [ngClass]="{disabled:heroPagination.currentPage === heroPagination.totalPages}">
+           <a (click)="setPaginationPg(heroPagination.currentPage + 1)"> Next </a>
+        </li>
+        <li [ngClass]="{disabled: heroPagination.currentPage === heroPagination.totalPages}">
+           <a (click)="setPaginationPg(heroPagination.totalPages)"> Last</a> 
+        </li> 
+     </ul>
+  </div>
+
+  <div class='col-sm-12 padzero ' *ngIf='!showHeroes'>
+    <div class='col-sm-4 padzero'>
+      <div class='mb24'> <h3>Create Hero </h3> </div>
+      <div class='form-group'>
+        <div class='col-sm-3 padzero'> <label> Name: </label> </div>
+        <div class='col-sm-9 padzero'> <input #heroName class='form-control' placeholder='Name' /> </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-sm-3 padzero'> <label> Age: </label> </div>
+        <div class='col-sm-9 padzero'> <input #heroAge class="form-control" placeholder='Age' /> </div>
+      </div>
+      <div class='col-sm-12 padzero mt24'>
+        <div class='col-sm-6 padzero'> 
+          <button class='btn btn-block btn-success' (click)='createHero(heroName.value, heroAge.value); heroName.value="";heroAge.value=""'>Create</button> 
+        </div>
+        <div class='col-sm-6 padzero'> 
+          <button class='btn btn-block btn-default' (click)='toggleForm()'>Cancel</button> 
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
