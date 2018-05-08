@@ -1,0 +1,17 @@
+<div class='col-sm-12 padzero'>
+  <!-- <div class='col-sm-4 padzero'> -->
+    <div class="input-group">
+      <input #searchText class='form-control' placeholder='Search Doctors' (keyup)="searchDoctor(searchText.value)" />
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit" (click)="searchDoctor(searchText.value)">
+          <i class='fa fa-search'></i>
+        </button>
+      </span>
+    </div>
+    <ul>
+      <li class='cust-li' *ngFor='let doctor of searchResults'>
+        <a routerLink='/doctor-detail-mg/{{doctor.id}}'> {{doctor.name}} </a>
+      </li>
+    </ul>
+  <!-- </div> -->
+</div>

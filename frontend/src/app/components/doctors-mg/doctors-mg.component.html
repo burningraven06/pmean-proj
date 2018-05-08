@@ -1,0 +1,98 @@
+<div class='col-sm-12 padzero'>
+  <div class='col-sm-6 mt24 mb24 padzero' *ngIf='showDoctors'>
+    <h3 class='inline' > Doctors MG List </h3>
+    <button class='btn btn-success ml16' (click)='toggleForm()'> Add Doctor</button>
+  </div>
+
+  <div class='col-sm-4 mt24 mb24 padzero'>
+    <!-- <app-Doctors-search-mg></app-Doctors-search-mg> -->
+  </div>
+
+  <div class='col-sm-12 padzero' *ngIf='doctors && showDoctors'> 
+    <div class='col-sm-2 mt16 padzero' *ngFor='let doctorElem of pagedDoctors' (click)='onDoctorSelect(doctorElem)' [class.doctorSelectedCSS]="doctorElem === clickedHero">
+      <a class='' routerLink='/doctor-detail-mg/{{doctorElem._id}}'> {{doctorElem.name}} </a>
+    </div>
+  </div>
+
+  <div class='col-sm-12 padzero mt24' *ngIf='doctors && showDoctors'>
+    <ul class='pagination' *ngIf="doctorPagination.pages && doctorPagination.pages.length">
+        <li [ngClass]="{disabled:doctorPagination.currentPage === 1}"> 
+           <a (click)="setPaginationPg(1)"> First</a>
+        </li>
+        <li [ngClass]="{disabled:doctorPagination.currentPage ===1}"> 
+           <a (click)="setPaginationPg(doctorPagination.currentPage -1)"> Previous</a>
+        </li>
+        <li *ngFor="let pageNum of doctorPagination.pages" [ngClass]="{active:doctorPagination.currentPage === pageNum}"> 
+           <a (click)="setPaginationPg(pageNum)"> {{pageNum}}</a>
+        </li>
+        <li [ngClass]="{disabled:doctorPagination.currentPage === doctorPagination.totalPages}">
+           <a (click)="setPaginationPg(doctorPagination.currentPage + 1)"> Next </a>
+        </li>
+        <li [ngClass]="{disabled: doctorPagination.currentPage === doctorPagination.totalPages}">
+           <a (click)="setPaginationPg(doctorPagination.totalPages)"> Last</a> 
+        </li> 
+     </ul>
+  </div>
+
+  <div class='col-sm-12 padzero ' *ngIf='!showDoctors'>
+    
+    <div class='col-sm-4 padzero'>
+      <div class='mb24'>
+        <h3> Create Doctor <small>2 way Data Binding </small></h3>
+        <form (ngSubmit)='createDoctor_DataBinding()'>
+          <div class='form-group'>
+            <label>Name</label>
+            <input type='text' class='form-control' name='doctorName' [(ngModel)]='newDoctor.name' required placeholder='John Doe'/>
+          </div>
+          <div class='form-group'>
+            <label> Age</label>
+            <input type='text' class='form-control' name='doctorName' [(ngModel)]='newDoctor.age' required placeholder='50' />
+          </div>
+          <div class='form-group'>
+            <button type='submit' class='btn btn-success'> Create </button>
+            <button class='btn  btn-default' (click)='toggleForm()'>Cancel</button> 
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class='col-sm-4 '>
+      <div class='mb24'>
+        <h3> Create Doctor <small> Reactive Forms</small></h3>
+        <form #doctorMgCreateForm="ngForm" (ngSubmit)="createDoctor_ReactiveForms(doctorMgCreateForm.value)">
+          <div class='form-group'>
+            <label>Name</label>
+            <input type='text' class='form-control' name='doctorNameV' ngModel required placeholder='John Doe'/>
+          </div>
+          <div class='form-group'>
+            <label>Age</label>
+            <input type='text' class='form-control' name='doctorAgeV' ngModel required placeholder='50'/>
+          </div>
+          <div class='form-group'>
+            <button type='submit' class='btn btn-success'> Create</button>
+            <button class='btn btn-default'(click)='toggleForm()'>Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class='col-sm-4 padzero'>
+      <div class='mb24'> 
+        <h3>Create Doctor <small>Grab Data from Input Vals</small></h3> 
+      </div>
+      <div class='form-group'>
+        <label> Name: </label>
+        <input #doctorName class='form-control' placeholder='John Doe' /> 
+      </div>
+      <div class='form-group'>
+        <label> Age: </label> 
+        <input #doctorAge class="form-control" placeholder='50' /> 
+      </div>
+      <div class='form-group'>
+        <button class='btn btn-success' (click)='createDoctor_Btn(doctorName.value, doctorAge.value); doctorName.value="";doctorAge.value=""'>Create</button>
+        <button class='btn btn-default' (click)='toggleForm()'>Cancel</button> 
+      </div>
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,6 @@
+.btn, .form-control, .alert{
+  border-radius: 0;
+}
+.pad-zero{
+  padding:0;
+}

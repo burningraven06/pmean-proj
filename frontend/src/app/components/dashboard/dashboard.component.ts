@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Hero } from '../../modelStructures/hero';
-import { HeroPGService } from '../../services/hero.pg.service';
-import { HeroMongoService } from '../../services/hero.mongo.service';
+import { Doctor } from '../../modelStructures/doctor';
+import { DoctorPGService } from '../../services/doctor.pg.service';
+import { DoctorMongoService } from '../../services/doctor.mongo.service';
+import { LoginAuthService} from '../../services/loginAuth.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -11,18 +13,23 @@ import { HeroMongoService } from '../../services/hero.mongo.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private heroPgService: HeroPGService, private activatedRoute: ActivatedRoute, private heroMongoService: HeroMongoService) { }
+  constructor(
+    private doctorPgService: DoctorPGService, 
+    private activatedRoute: ActivatedRoute, 
+    private doctorMongoService: DoctorMongoService,
+    private loginAuthService: LoginAuthService
+  ) { }
 
-  dashboardPGHeroes: Hero[];
-  dashboardMGHeroes: Hero[];
+  dashboardPGDoctors: Doctor[];
+  dashboardMGDoctors: Doctor[];
 
-  retrieveRecentHeroes(): void {
-    this.heroPgService.getHeroes().subscribe(data => this.dashboardPGHeroes = data.slice(1, 4));
-    this.heroMongoService.getHeroes().subscribe(data => this.dashboardMGHeroes = data.slice(1, 4))
+  retrieveRecentDoctors(): void {
+    this.doctorPgService.getDoctors().subscribe(data => this.dashboardPGDoctors = data.slice(1, 4));
+    this.doctorMongoService.getDoctors().subscribe(data => this.dashboardMGDoctors = data.slice(1, 4))
   }
 
   ngOnInit() {
-    this.retrieveRecentHeroes();
+    this.retrieveRecentDoctors();
   }
 
 }

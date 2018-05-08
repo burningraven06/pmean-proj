@@ -1,0 +1,66 @@
+<div *ngIf='show_alert' class='col-md-12'>
+  <div class='col-md-4 pad-zero'>
+    <div class='alert alert-success alert-dismissble' role='alert'>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Success!</strong> Your account has been created. 
+        <p> Click <a routerLink='/login'>here</a> to login with your account. </p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf='show_error' class='col-md-12'>
+  <div class='col-md-4 pad-zero'>
+    <div class='alert alert-danger alert-dismissble' role='alert'>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="resetShowError()"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> {{errText}}
+    </div>
+  </div>
+</div>
+
+<div class='col-sm-12 col-md-4 '>
+  <h3> Signup: <small> 2way Data Binding</small> </h3>
+  <form (ngSubmit)="submitBy_DataBinding()">
+    <div class='form-group'>
+      <label>Email</label>
+      <input type='email' class='form-control' required name='userEmail' [(ngModel)]='user.email' />
+
+    </div>
+    <div class='form-group'>
+      <label>Password</label>
+      <input type='password' class='form-control' name='userPassword' required [(ngModel)]='user.password' />
+    </div>
+    <button type='submit' class='btn btn-success'> Submit</button>
+  </form>
+</div>
+
+<div class='col-sm-12 col-md-4 '>
+  <h3> Signup: <small> Reactive Forms</small> </h3>
+  <form #signupForm="ngForm" (ngSubmit)="submitBy_ReactiveForm(signupForm.value)">
+    <div class='form-group'>
+      <label>Email</label>
+      <input type='email' class='form-control' name='user_email' ngModel required />
+    </div>
+    <div class='form-group'>
+      <label>Password</label>
+      <input type='password' class='form-control' name='user_password' ngModel required/>
+    </div>
+    <button type='submit' class='btn btn-success'> Submit</button>
+  </form>
+
+  <!-- <pre> {{ wowForm.value | json}}</pre> -->
+</div>
+
+<div class='col-sm-12 col-md-4 '>
+  <h3> Signup: <small> Grab Data by Input Vals </small></h3>
+  <form>
+    <div class='form-group'>
+      <label>Email</label>
+      <input type='email' class='form-control' name='email' required #emailInput3/>
+    </div>
+    <div class='form-group'>
+      <label>Password</label>
+      <input type='password' class='form-control' name='password' required #passwordInput3/>
+    </div>
+    <button type='submit' class='btn btn-success' (click)="submitBy_Btn(emailInput3.value, passwordInput3.value)"> Submit</button>
+  </form>
+</div>

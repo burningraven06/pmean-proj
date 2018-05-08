@@ -5,13 +5,25 @@
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" routerLink='/'>NG5OffDocs</a>
+      <a class="navbar-brand" routerLink='/'>MEAN-App</a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-div">
+      <!-- <ul class="nav navbar-nav">
+        <li> <a routerLink='/doctors-pg' *ngIf="loginAuthService.getIsAuthenticated"> Doctors PG</a> </li>
+        <li> <a routerLink='/doctors-mg' *ngIf="loginAuthService.getIsAuthenticated"> Doctors MG</a> </li>
+        <li> <a routerLink='/dashboard' *ngIf="loginAuthService.getIsAuthenticated"> Dashboard</a> </li>
+        <li> <a routerLink='/signup' *ngIf="!loginAuthService.getIsAuthenticated"> Sign Up </a> </li>
+        <li> <a routerLink='/login' *ngIf="!loginAuthService.getIsAuthenticated"> Login </a> </li> 
+        <li> <a routerLink='/logout' *ngIf="loginAuthService.getIsAuthenticated" (click)="loginAuthService.logoutUser()"> Logout</a> </li>
+      </ul> -->
+
       <ul class="nav navbar-nav">
-        <li> <a routerLink='/heroes-pg'> Heroes PG</a> </li>
-        <li> <a routerLink='/heroes-mg'> Heroes MG</a> </li>
+        <li> <a routerLink='/doctors-pg'> Doctors PG</a> </li>
+        <li> <a routerLink='/doctors-mg'> Doctors MG</a> </li>
         <li> <a routerLink='/dashboard'> Dashboard</a> </li>
+        <li> <a routerLink='/signup'> Sign Up </a> </li>
+        <!-- <li> <a routerLink='/login' *ngIf="!loginAuthService.getIsAuthenticated"> Login </a> </li>  -->
+        <!-- <li> <a routerLink='/logout' *ngIf="loginAuthService.getIsAuthenticated" (click)="loginAuthService.logoutUser()"> Logout</a> </li> -->
       </ul>
     </div>
   </div>

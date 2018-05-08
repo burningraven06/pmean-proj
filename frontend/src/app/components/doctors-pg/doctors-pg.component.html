@@ -1,0 +1,59 @@
+<div class='col-sm-12 padzero'>
+  <div class='col-sm-6 mt24 mb24 padzero' *ngIf='showDoctors'>
+    <h3 class='inline' > Doctors PG List </h3>
+    <button class='btn btn-success ml16' (click)='toggleForm()'> Add Doctor</button>
+  </div>
+
+  <div class='col-sm-4 mt24 mb24 padzero'>
+    <app-doctors-search-pg></app-doctors-search-pg>
+  </div>
+
+  <div class='col-sm-12 padzero' *ngIf='doctors && showDoctors'> 
+    <div class='col-sm-2 mt16 padzero' *ngFor='let doctorElem of pagedDoctors' (click)='ondoctorSelect(doctorElem)' [class.doctorSelectedCSS]="doctorElem === clickedDoctor">
+      <a class='' routerLink='/doctor-detail-pg/{{doctorElem.id}}'> {{doctorElem.name}} </a>
+    </div>
+  </div>
+
+  <div class='col-sm-12 padzero mt24' *ngIf='doctors && showdoctors'>
+    <ul class='pagination' *ngIf="doctorPagination.pages && doctorPagination.pages.length">
+        <li [ngClass]="{disabled:doctorPagination.currentPage === 1}"> 
+           <a (click)="setPaginationPg(1)"> First</a>
+        </li>
+        <li [ngClass]="{disabled:doctorPagination.currentPage ===1}"> 
+           <a (click)="setPaginationPg(doctorPagination.currentPage -1)"> Previous</a>
+        </li>
+        <li *ngFor="let pageNum of doctorPagination.pages" [ngClass]="{active:doctorPagination.currentPage === pageNum}"> 
+           <a (click)="setPaginationPg(pageNum)"> {{pageNum}}</a>
+        </li>
+        <li [ngClass]="{disabled:doctorPagination.currentPage === doctorPagination.totalPages}">
+           <a (click)="setPaginationPg(doctorPagination.currentPage + 1)"> Next </a>
+        </li>
+        <li [ngClass]="{disabled: doctorPagination.currentPage === doctorPagination.totalPages}">
+           <a (click)="setPaginationPg(doctorPagination.totalPages)"> Last</a> 
+        </li> 
+     </ul>
+  </div>
+
+  <div class='col-sm-12 padzero ' *ngIf='!showDoctors'>
+    <div class='col-sm-4 padzero'>
+      <div class='mb24'> <h3>Create Doctor </h3> </div>
+      <div class='form-group'>
+        <div class='col-sm-3 padzero'> <label> Name: </label> </div>
+        <div class='col-sm-9 padzero'> <input #doctorName class='form-control' placeholder='Name' /> </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-sm-3 padzero'> <label> Age: </label> </div>
+        <div class='col-sm-9 padzero'> <input #doctorAge class="form-control" placeholder='Age' /> </div>
+      </div>
+      <div class='col-sm-12 padzero mt24'>
+        <div class='col-sm-6 padzero'> 
+          <button class='btn btn-block btn-success' (click)='createDoctor(doctorName.value, doctorAge.value); doctorName.value="";doctorAge.value=""'>Create</button> 
+        </div>
+        <div class='col-sm-6 padzero'> 
+          <button class='btn btn-block btn-default' (click)='toggleForm()'>Cancel</button> 
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

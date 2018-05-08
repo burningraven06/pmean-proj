@@ -1,45 +1,53 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HeroesPGComponent } from './components/heroes-pg/heroes-pg.component';
-import { HeroDetailsPGComponent } from './components/hero-details-pg/hero-details-pg.component';
-import { HeroSearchPGComponent } from './components/heroes-search-pg/heroes-search-pg.component';
-import { HeroesMGComponent} from './components/heroes-mg/heroes-mg.component';
-import { HeroDetailsMGComponent} from './components/hero-details-mg/hero-details-mg.component';
-import { HeroSearchMGComponent} from './components/heroes-search-mg/heroes-search-mg.component';
+import { DoctorsPGComponent } from './components/doctors-pg/doctors-pg.component';
+import { DoctorDetailsPGComponent } from './components/doctor-details-pg/doctor-details-pg.component';
+import { DoctorSearchPGComponent } from './components/doctors-search-pg/doctors-search-pg.component';
+import { DoctorsMGComponent} from './components/doctors-mg/doctors-mg.component';
+import { DoctorDetailsMGComponent} from './components/doctor-details-mg/doctor-details-mg.component';
+import { DoctorSearchMGComponent} from './components/doctors-search-mg/doctors-search-mg.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {SignupComponent} from './components/signup/signup.component';
+import {LoginComponent} from './components/login/login.component';
 
-import { HeroMongoService} from './services/hero.mongo.service';
-import { HeroPGService} from './services/hero.pg.service';
+import { DoctorMongoService} from './services/doctor.mongo.service';
+import { DoctorPGService} from './services/doctor.pg.service';
 import { MessageService } from './services/message.service';
-import { PaginationService } from './services/pagination.service'
+import { PaginationService } from './services/pagination.service';
+import { SignupService} from './services/signup.service';
+import { LoginAuthService} from './services/loginAuth.service';
 
 import { AppRoutingModule } from './app-routing.module';
+import { Http } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesPGComponent,
-    HeroDetailsPGComponent,
+    DoctorsPGComponent,
+    DoctorDetailsPGComponent,
     MessagesComponent,
     NavbarComponent,
     DashboardComponent,
-    HeroSearchPGComponent,
-    HeroesMGComponent,
-    HeroDetailsMGComponent,
-    HeroSearchMGComponent
+    DoctorSearchPGComponent,
+    DoctorsMGComponent,
+    DoctorDetailsMGComponent,
+    DoctorSearchMGComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [HeroPGService, MessageService, PaginationService, HeroMongoService],
+  providers: [DoctorMongoService, MessageService, PaginationService, DoctorPGService, SignupService, LoginAuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
