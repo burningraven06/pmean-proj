@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const pgconnectionStr = require('../pg-dbconn/dbconnection');
+const pgconnectionStr = require('../pg-dbconn/dbConnStr');
 
 const doctorSequelize = new Sequelize(pgconnectionStr);
 

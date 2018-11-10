@@ -2,11 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
-const env_vars = require('dotenv').config();
-
 const doctorRouterPG = require('./pg-routes/doctorRoutes');
-
-const mongoDbConn = require('./mongo-dbconn/dbconnection');
 const doctorRouterMG = require('./mongo-routes/doctorRoutes');
 const userRouterMG = require('./mongo-routes/userRoutes');
 

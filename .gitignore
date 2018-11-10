@@ -7,9 +7,11 @@
 /out-tsc
 
 # dependencies
-/node_modules
-/backend/node_modules
-/frontend/node_modules
+node_modules
+backend/node_modules
+frontend/node_modules
+backend/mongo-dbconn/dbConnStr.js
+backend/pg-dbconn/dbConnStr.js
 
 
 # IDEs and editors
