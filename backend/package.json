@@ -1,14 +1,14 @@
 {
-  "name": "backend",
+  "name": "pmean-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "pmean Api Tryout",
   "main": "index.js",
   "scripts": {
     "start-app" : "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Toufiq (https://twitter.com/burningraven06)",
+  "description" : "PMEAN Api",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^2.0.1",
