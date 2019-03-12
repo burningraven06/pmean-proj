@@ -1,6 +1,6 @@
 ## Sequelize Tryout
 
-*Can't really vouch for Sequelize though (not my cup of tea)*
+*Sort of Abandoned Project - Thanks to Angular & its weird errors*
 
 - Backend - Express (with JS)
 - Frontend - Angular (with TS)
